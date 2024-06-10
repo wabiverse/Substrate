@@ -114,7 +114,7 @@ final class VulkanStateCaches {
         return info
     }
     
-    public func reflection(for descriptor: RenderPipelineDescriptor, renderTarget: RenderTargetDescriptor) -> VulkanPipelineReflection {
+    public func reflection(for descriptor: RenderPipelineDescriptor, renderTarget: RenderTargetsDescriptor? = nil) -> VulkanPipelineReflection {
         return self.shaderLibrary.reflection(for: .graphics(vertexShader: descriptor.vertexFunction.name, fragmentShader: descriptor.fragmentFunction.name))
     }
     

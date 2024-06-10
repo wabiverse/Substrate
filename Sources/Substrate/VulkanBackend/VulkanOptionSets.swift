@@ -185,10 +185,10 @@ extension VkMemoryPropertyFlagBits : OptionSet {
     }
 }
 
-extension VmaAllocationCreateFlagBits : OptionSet {
-    var flags: VmaAllocationCreateFlags {
-        return VmaAllocationCreateFlags(self.rawValue)
-    }
-}
+// extension VmaAllocationCreateFlagBits : OptionSet {
+//     var flags: VmaAllocationCreateFlags {
+//         return VmaAllocationCreateFlags(self.rawValue)
+//     }
+// }
 
 #endif // canImport(Vulkan)

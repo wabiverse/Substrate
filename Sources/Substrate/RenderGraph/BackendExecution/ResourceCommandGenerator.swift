@@ -435,7 +435,7 @@ final class ResourceCommandGenerator<Backend: SpecificRenderBackend> {
                                 if fromEncoder == onEncoder {
                                     self.commands.append(FrameResourceCommand(command:
                                                                             .memoryBarrier(Resource(resource), afterUsage: previousRead.type, afterStages: previousRead.stages, beforeCommand: usage.commandRange.lowerBound, beforeUsage: usage.type, beforeStages: usage.stages, activeRange: activeSubresources),
-                                                                     index: previousRead.commandRange.upperBound))
+                                                                     index: previousRead.passIndex))
                                 } else {
                                     let dependency = Dependency(resource: resource, producingUsage: previousRead, producingEncoder: onEncoder, consumingUsage: usage, consumingEncoder: fromEncoder)
                                     commandEncoderDependencies.setDependency(from: fromEncoder,
@@ -446,8 +446,8 @@ final class ResourceCommandGenerator<Backend: SpecificRenderBackend> {
 
                         } else if !usage.type.isRenderTarget { // Render target layout transitions are handled by the render pass.
                             self.commands.append(FrameResourceCommand(command:
-                                                                    .memoryBarrier(Resource(resource), afterUsage: .frameStartLayoutTransitionCheck, afterStages: .cpuBeforeRender, beforeCommand: usage.commandRange.lowerBound, beforeUsage: usage.type, beforeStages: usage.stages, activeRange: activeSubresources),
-                                                                  index: usage.type.isRenderTarget ? usage.commandRange.lowerBound : 0))
+                                                                    .memoryBarrier(Resource(resource), afterUsage: .textureView, afterStages: .cpuBeforeRender, beforeCommand: usage.passIndex, beforeUsage: usage.type, beforeStages: usage.stages, activeRange: activeSubresources),
+                                                                  index: usage.type.isRenderTarget ? usage.passIndex : 0))
                         }
                     }
                     #endif

@@ -375,11 +375,11 @@ final class VulkanRenderTargetDescriptor: BackendRenderTargetDescriptor {
             
             assert(usageSubpass.index == self.subpassForPassIndex(currentRenderPassIndex)!.index)
             
-            if usage.type == .read || usage.type == .inputAttachment || usage.type == .readWrite {
-                if usage.type == .readWrite {
+            if usage.type == .cpuRead || usage.type == .inputAttachment || usage.type == .cpuWrite {
+                if usage.type == .cpuReadWrite {
                     print("Warning: reading from a storage image that is also a render target attachment.")
                 }
-                self.subpasses[usage.renderPassRecord.passIndex - renderPassRange.lowerBound].readFrom(attachmentIndex: attachmentIndex)
+                self.subpasses[usage.passIndex - renderPassRange.lowerBound].readFrom(attachmentIndex: attachmentIndex)
             }
             
             if let previousWrite = previousWrite {
@@ -395,7 +395,8 @@ final class VulkanRenderTargetDescriptor: BackendRenderTargetDescriptor {
             }
 
             if usage.type.isWrite {
-                previousWrite = usage
+                let us = usage.usage
+                previousWrite = us
                 previousWriteSubpass = usageSubpass.index
             }
         }
