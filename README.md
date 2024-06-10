@@ -1,5 +1,31 @@
 # Substrate
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+> [!IMPORTANT]
+> # Vulkan is not Supported
+> The vulkan support advertised here appears to have fallen off
+> approximatley **3 years ago**, and as far as I can tell, this
+> is to be now considered a **Metal only** framework.
+> ###### 6.10.2024 [@furby-tm](https://github.com/furby-tm)
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
 _Note to the reader: This readme is in major need of an update. The principles are the same in the current implementation but the code examples are in need of an update. Interested readers may find the [ImGuiDemo demo app](https://github.com/PeskyPixel/ImGuiDemo) a useful starting point for the current API._
 
 ## What is this?
